@@ -583,7 +583,13 @@ namespace Data_Package_Tool
             imagesPrevBtn.Enabled = false;
 
             if (imagesOffset < 0) imagesOffset = 0;
-            if (imagesOffset >= DataPackage.ImageAttachments.Count || imagesOffset + imagesPerPage >= DataPackage.ImageAttachments.Count) imagesOffset = DataPackage.ImageAttachments.Count - imagesPerPage;
+            
+            if (imagesOffset >= DataPackage.ImageAttachments.Count || imagesOffset + imagesPerPage >= DataPackage.ImageAttachments.Count)
+            {
+                imagesPerPage = DataPackage.ImageAttachments.Count;
+                imagesOffset = DataPackage.ImageAttachments.Count - imagesPerPage;
+            }
+
 
             // Refresh images on the current page
             if (DataPackage.UsesUnsignedCDNLinks)
