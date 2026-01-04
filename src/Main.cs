@@ -702,13 +702,14 @@ namespace Data_Package_Tool
 
             Properties.Settings.Default.Save();
         }
-
+bool massDeletion_active = false;
         private int MassDeleteIdx = 0;
         private async void massDeleteBtn_Click(object sender, EventArgs e)
         {
-            if (massDeleteTimer.Enabled == true)
+            if (massDeletion_active == true)
             {
                 massDeleteTimer.Stop();
+massDeletion_active = false;
                 massDeleteBtn.Text = "Mass Delete";
                 searchTb.Enabled = true;
                 searchBtn.Enabled = true;
@@ -725,6 +726,7 @@ namespace Data_Package_Tool
             prompt.ShowDialog();
             if (prompt.DialogSuccess)
             {
+massDeletion_active = true;
                 MassDeleteIdx = 0;
                 massDeleteTimer.Interval = prompt.GetDelay();
 
