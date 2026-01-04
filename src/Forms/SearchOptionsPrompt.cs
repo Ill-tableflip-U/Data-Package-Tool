@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 using System.Collections.Specialized;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Data_Package_Tool
@@ -129,12 +130,18 @@ namespace Data_Package_Tool
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            string id = Interaction.InputBox("Enter the id", "Prompt");
-            if (id == "") return;
-            if (!excludedIdsLb.Items.Contains(id))
+            string id_input = Interaction.InputBox("Enter the ID or IDs, separated by commas (,)", "Prompt");
+            if (id_input == "") return;
+            string[] ID_list = id_input.Split(",");
+            for (int i = 0; i < ID_list.Length; i++)
             {
-                excludedIdsLb.Items.Add(id);
-                ChangesMade = true;
+                string ID_toAdd = ID_list[i];
+                if (!excludedIdsLb.Items.Contains(ID_toAdd))
+                {
+                    excludedIdsLb.Items.Add(ID_toAdd);
+                    ChangesMade = true;
+                }
+
             }
         }
 
@@ -154,12 +161,18 @@ namespace Data_Package_Tool
 
         private void addWhitelistBtn_Click(object sender, EventArgs e)
         {
-            string id = Interaction.InputBox("Enter the id", "Prompt");
-            if (id == "") return;
-            if (!whitelistIdsLb.Items.Contains(id))
+            string id_input = Interaction.InputBox("Enter the ID or IDs, separated by commas (,)", "Prompt");
+            if (id_input == "") return;
+            string[] ID_list = id_input.Split(",");
+            for (int i = 0; i < ID_list.Length; i++)
             {
-                whitelistIdsLb.Items.Add(id);
-                ChangesMade = true;
+                string ID_toAdd = ID_list[i];
+                if (!whitelistIdsLb.Items.Contains(ID_toAdd))
+                {
+                    whitelistIdsLb.Items.Add(ID_toAdd);
+                    ChangesMade = true;
+                }
+
             }
         }
 
